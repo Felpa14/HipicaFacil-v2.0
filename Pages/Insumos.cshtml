@@ -1,0 +1,118 @@
+﻿@page
+@model InsumosModel
+@{
+    <!doctype html>
+    <html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap demo</title>
+        <link rel="stylesheet" href="C:\Users\Felip\source\repos\HipicaFacil\wwwroot\css\bootstrap.min.css">
+        <style>
+            #insumos {
+                font-family: Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+                #insumos td, #insumos th {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                }
+
+                #insumos tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+
+                #insumos tr:hover {
+                    background-color: #ddd;
+                }
+
+                #insumos th {
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                    text-align: left;
+                    background-color: #04AA6D;
+                    color: white;
+                }
+        </style>
+    </head>
+    </html>
+    <body>
+        <h1>Gerenciamento de Insumos</h1>
+        <br />
+        <form method="post">
+            <div class="row g-3">
+                <div class="col-md-5">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="nomeInsumo" name="nomeInsumo" placeholder=" " required>
+                        <label for="nomeInsumo">Nome do Insumo:</label>
+                    </div>
+                </div>
+                <div class="row-1">
+                    <button type="submit" class="btn btn-primary">Adicionar</button>        
+               </div>
+            </div>
+            <br />
+        </form>
+    <h3>Insumos Registrados</h3>
+    @if (Model.Insumos.Count > 0){
+    <table id = "insumos" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var insumo in Model.Insumos)
+            {
+                <tr>
+                    <td>@insumo.Id</td>
+                    <td>@insumo.Nome</td>
+                    <td>
+                        <form method="post">
+                            <input type="hidden" name="idInsumo" value="@insumo.Id" />
+                            <button type="submit" class="btn btn-danger">Apagar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+        <br />
+    <h2>Editar Insumo</h2>
+    <br/>
+    <form method="post">
+        <div class="row g-3">
+            <div class="col-md-5">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="idInsumoEditar" name="idInsumoEditar" placeholder=" " required>
+                    <label for="idInsumoEditar">ID do Insumo:</label>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-5">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="novoNomeInsumo" name="novoNomeInsumo" placeholder= " " required>
+                    <label for="novoNomeInsumo">Novo nome do Insumo:</label>
+                </div>
+            </div>
+        </div>
+        <br />
+            <div class="row-1">
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
+    </form>
+    <br />
+}
+    else
+{
+    <p>Nenhum insumo registrado.</p>
+}
+    </body>
+ 
+
+}
