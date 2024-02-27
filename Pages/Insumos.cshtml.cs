@@ -52,7 +52,7 @@ public class InsumosModel : PageModel
         return RedirectToPage("/Insumos");
     }
 
-    private void CarregarInsumos()
+    public void CarregarInsumos()
     {
         // String de conexão com o banco de dados MySQL
         string connectionString = "Server=127.0.0.1;Port=3307;Database=hipicafacil;Uid=root;Pwd=root;";
